@@ -1,0 +1,20 @@
+{
+    "name": "Chroma - PHP TEST / TRACKING SYSTEM",
+    "author": "Ionut Marchis",
+    "email": "imarchis@yahoo.com",
+    "description": "Tracking code REST API with two storage types",
+    "require": {
+        "phpunit/phpunit": "4.7.*",
+        "mikey179/vfsStream": "1.6.*"
+    },
+    "autoload": {
+        "psr-4": {"Tracking\\": ["src/","src/Classes","src/Interfaces"]},
+        "classmap": ["src/Classes", "src/Interfaces"]
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "phpunit",
+            "php -S localhost:8088"
+        ]
+    }
+}
