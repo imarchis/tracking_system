@@ -7,7 +7,7 @@ $page = "";
 if (isset($_GET["page"])) {
     $page = $_GET["page"];
     $builder = new \Tracking\StorageBuilder();
-    $builder->setStorage();
+    $builder->setStorage(DEFAULT_STORAGE);
     $storage = $builder->getStorage();
     if($storage != null){
         $seeder = new \Tracking\StorageSeeder($storage);
@@ -15,13 +15,18 @@ if (isset($_GET["page"])) {
         switch ($page) {
             case "codes":
                 $storageService = new \Tracking\StorageFacade($storage);
-                echo $storageService->codes();
+                $response = $storageService->codes();
+                echo json_encode($response);
                 break;
             case "delivery-date":
                 if (isset($_GET['code'])) {
                     $code = htmlspecialchars(htmlentities($_GET['code']));
                     $storageService = new \Tracking\StorageFacade($storage);
-                    echo $storageService->deliveryDate($code);
+                    $response = $storageService->deliveryDate($code);
+                    if (isset($response['error'])) {
+                        header("HTTP/1.0 401 Not Found");
+                    }
+                    echo json_encode($response);
                 } else {
                     header("HTTP/1.0 401 Not Found");
                     $response['error'] = 'Invalid Request';

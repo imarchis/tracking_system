@@ -8,7 +8,6 @@ class CSVStorage implements StorageTypeInterface
     public function __construct($file)
     {
         $this->file = $file;
-        $this->setup();
     }
 
     public function setup()

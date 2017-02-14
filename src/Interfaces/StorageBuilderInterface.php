@@ -3,6 +3,6 @@ namespace Tracking;
 
 interface StorageBuilderInterface
 {
-    public function setStorage();
+    public function setStorage($type);
     public function getStorage();
 }

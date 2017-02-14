@@ -5,10 +5,10 @@ class StorageBuilder implements StorageBuilderInterface
 {
     private $storage;
 
-    public function setStorage() {
-        if (DEFAULT_STORAGE == 'csv') {
+    public function setStorage($type) {
+        if ($type == 'csv') {
             $this->storage = new CSVStorage(CSV_PATH);
-        } elseif (DEFAULT_STORAGE == 'sqlite') {
+        } elseif ($type == 'sqlite') {
             $this->storage = new SQLiteStorage(SQLITE_PATH);
         } else {
             $this->storage = null;

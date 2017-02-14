@@ -12,6 +12,7 @@ class StorageSeeder implements StorageSeederInterface
     public function run()
     {
         if($this->storage->countRecords() == 0 ){
+            $this->storage->setup();
             for ($i = 0; $i<10; $i++) {
                 $data = [
                     'tracking_code' => hash('crc32b', $i),

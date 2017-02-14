@@ -8,7 +8,6 @@ class SQLiteStorage  extends SQLite3 implements StorageTypeInterface
     public function __construct($file)
     {
         parent::__construct($file);
-        $this->setup();
     }
 
     public function __destruct(){
