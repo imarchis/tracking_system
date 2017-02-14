@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Delivery Code Check</title>
+        <style>
+            body {
+                font-family: Courier;
+                background-color: #fbfafa;
+            }
+            #codes {
+                text-align: center;
+                font-size: 12px;
+                font-style: italic;
+                color: #5d5b5b;
+                background-color: #ffffff;
+                height: 296px;
+                width: 286px;
+                overflow-y: scroll;
+                border: 2px solid #c7c7c7;
+                margin: 10px auto 10px  auto;
+            }
+            #codes > p {
+                margin-left: 15px;
+                border-bottom: 1px solid #efefef;
+                padding-bottom: 5px;
+            }
+            #codes_list {
+                margin-top: 10px;
+            }
+            .game-section {
+                position: relative;
+                display: block;
+                margin: 0 auto;
+                width: 300px;
+                text-align: center;
+                clear: both;
+            }
+            .error {
+                color: red;
+                margin: 20px auto;
+            }
+            .delivery {
+                color: green;
+                margin: 20px auto;
+            }
+            i {
+                display: block;
+                font-size: 10px;
+                color: #5d5b5b;
+                margin-bottom: 30px;
+            }
+        </style>
+        <script src="assets/angular.min.js"></script>
+    </head>
+    <body>
+        <div class="game-section" data-ng-app="trk">
+            <div data-ng-controller="trackController as trk" >
+                <div data-ng-if="trk.ok == true">
+                    <h3>Scheduled deliveries:</h3>
+                    <div id="codes" >
+                        <div id="codes_list" style="text-align: center">
+                            <b>Delivery Codes</b>
+                            <p data-ng-repeat="code in trk.codes">{{ code.tracking_code }}</p>
+                        </div>
+                    </div>
+                    <i>Select a code from the list above to check the delivery date of your shipping</i>
+                    <form method="post">
+                        <label for="tracking_code" >Enter Delivery Code</label>
+                        <br/><br/>
+                        <input type="text" id="tracking_code" data-ng-model="trk.code" placeholder="Delivery Code">
+                        <button type="button" data-ng-click="trk.check()" >Check Date</button>
+                    </form>
+                    <div data-ng-if="trk.delivery" class="delivery">
+                        Delivery Date: {{ trk.delivery }}
+                    </div>
+                    <div data-ng-if="trk.error" class="error">
+                        {{ trk.error }}
+                    </div>
+                </div>
+                <div data-ng-if="trk.ok == false">
+                    Server Error.
+                    <br/>
+                    Please try again later.
+                </div>
+            </div>
+        </div>
+        <script src="assets/trk.js"></script>
+    </body>
+</html>

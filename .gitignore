@@ -1,0 +1,5 @@
+/vendor/
+/src/DataStores/CSV/*
+!/src/DataStores/CSV/.gitkeep
+/src/DataStores/SQLite/*
+!/src/DataStores/SQLite/.gitkeep

@@ -1,0 +1,6 @@
+#Installation / Run:
+    git clone
+    cd tracking_system
+    COMPOSER_PROCESS_TIMEOUT=2000 composer install
+    visit http://localhost:8088
+
